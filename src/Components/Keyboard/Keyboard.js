@@ -1,19 +1,23 @@
-import { Input } from '../Input/Input';
-import { Buttons } from '../Buttons/Buttons';
-import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useState } from 'react';
 
-export const Keyboard = ({}) => {
-  const [input, setInput] = useState([]);
+import Input from '../Input';
+import Buttons from '../Button';
+
+const Keyboard = () => {
+  const [secretCode, setSecretCode] = useState('');
 
   const handleClick = (e) => {
     const newInput = e.target.value;
-    setInput(input + newInput);
+    setSecretCode(secretCode + newInput);
+  };
+  const handleChange = (newDigit) => {
+    setSecretCode(newDigit);
   };
 
   return (
-    <div>
+    <>
       <Box
         display="flex"
         flexDirection="column"
@@ -21,12 +25,14 @@ export const Keyboard = ({}) => {
         textAlign="center"
         gap={3}
       >
-        <Input input={input} setInput={setInput} />
+        <Input secretCode={secretCode} handleChange={handleChange} />
         <Buttons handleClick={handleClick} />
         <Typography textAlign="center" fontWeight="bold">
-          {input === '112567' ? 'Tajná zpráva:Úkol splněn' : ''}
+          {secretCode === '112567' ? 'Tajná zpráva:Úkol splněn' : ''}
         </Typography>
       </Box>
-    </div>
+    </>
   );
 };
+
+export default Keyboard;

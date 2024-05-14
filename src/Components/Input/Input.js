@@ -1,18 +1,18 @@
 import TextField from '@mui/material/TextField';
 
-export const Input = ({ input, setInput }) => {
-  const inputs = +input;
+const Input = ({ secretCode, handleChange }) => {
+  // const inputs = +secretCode;
   const handleOnChange = (e) => {
-    setInput(e.target.value);
+    handleChange(e.target.value);
   };
 
   return (
-    <div>
+    <>
       <TextField
         variant="outlined"
         margin="normal"
         onChange={handleOnChange}
-        value={inputs || input ? input : ''}
+        value={secretCode}
         label="secret code"
         placeholder="Enter the secret code"
         color="secondary"
@@ -44,6 +44,8 @@ export const Input = ({ input, setInput }) => {
           },
         }}
       />
-    </div>
+    </>
   );
 };
+
+export default Input;
